@@ -24,11 +24,10 @@ import java.sql.Types;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.common.base.Preconditions;
+
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-
-import com.google.common.base.Preconditions;
-import com.nesscomputing.types.PlatformId;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
@@ -119,23 +118,6 @@ public final class JdbiMappers
         final String str = rs.getString(columnIndex);
 
         return (str == null) ? null : Enum.valueOf(enumType, str);
-    }
-
-    /**
-     * Returns an Enum representing the data or null if the input is null.
-     */
-    public static <T> PlatformId<T> getPlatformId(final ResultSet rs, final Class<T> platformIdType, final String columnName) throws SQLException
-    {
-        final String str = rs.getString(columnName);
-
-        return (str == null) ? null : PlatformId.<T>valueOf(str);
-    }
-
-    public static <T> PlatformId<T> getPlatformId(final ResultSet rs, final Class<T> platformIdType, final int columnIndex) throws SQLException
-    {
-        final String str = rs.getString(columnIndex);
-
-        return (str == null) ? null : PlatformId.<T>valueOf(str);
     }
 
     /**
